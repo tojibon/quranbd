@@ -76,7 +76,8 @@ foreach( $option_arr as $k=>$v ) {
     <title>Quran in Bangla</title>
 	
 	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    
+    <script src="./js/audio.min.js"></script>
+	
 	<style type="text/css">
 		/*-------------------------------------------------------------------------*/
 		/*	1.	Browser Reset + Font Face
@@ -136,6 +137,15 @@ foreach( $option_arr as $k=>$v ) {
 			padding: 50px 0px;
 		}
 		
+		.surah .ayat-audio {
+			text-align: center;
+			margin: 0 auto;
+			display: block;
+			max-width: 460px;
+			padding-top: 20px;
+			padding-bottom: 10px;
+		}
+		
 		.surah .ayat-arabit {
 			text-align: right;
 		}
@@ -155,8 +165,9 @@ foreach( $option_arr as $k=>$v ) {
 	</style>
 	
 	<script type="text/javascript">
+		var base_url = 'http://localhost/quranbd/';
 		function reload_page( value ) {
-			window.location.href = 'http://localhost/quranbd/'+value;
+			window.location.href = base_url + value;
 		}
 		window.onload = function () { 
 			var $surah = parseInt( document.getElementById( "select_surah" ).getAttribute( "data-current-surah" ) );
@@ -177,6 +188,9 @@ foreach( $option_arr as $k=>$v ) {
 								$str = $str + '<div class="ayat-bumber">';
 									$str = $str + '<span>'+$i+'</span>';
 								$str = $str + '</div>';
+								$str = $str + '<div class="ayat-audio">';
+									$str = $str + '<audio src="http://www.quran.gov.bd/quran/Sound/arabic/'+$current_surah+'/'+$current_surah+'-'+$i+'.mp3" loop />';
+								$str = $str + '</div>';
 								$str = $str + '<div class="ayat-arabit">';
 									$str = $str + '<img src="http://www.quran.gov.bd/quran/arabic/'+$current_surah+'/'+$current_surah+'-'+$i+'.png" alt="" />';
 								$str = $str + '</div>';
@@ -190,11 +204,15 @@ foreach( $option_arr as $k=>$v ) {
 						}
 					}
 					$('#surah').append( $str );
+					var newaudio = audiojs.createAll();
 				}
 				$('#select_surah').data( 'displayed-ayat', $total_displayed+10 );
 			}
 		});
 		
+		audiojs.events.ready(function() {
+			var as = audiojs.createAll();
+		});
 	</script>
 	
 </head>
@@ -334,6 +352,9 @@ foreach( $option_arr as $k=>$v ) {
 					<div class="ayat">
 						<div class="ayat-bumber">
 							<span><?php echo $i; ?></span>
+						</div>
+						<div class="ayat-audio">
+							<audio src="http://www.quran.gov.bd/quran/Sound/arabic/<?php echo $surah; ?>/<?php echo $surah; ?>-<?php echo $i; ?>.mp3"  loop />
 						</div>
 						<div class="ayat-arabit">
 							<img src="http://www.quran.gov.bd/quran/arabic/<?php echo $surah; ?>/<?php echo $surah; ?>-<?php echo $i; ?>.png" alt="" />
