@@ -73,7 +73,7 @@ foreach( $option_arr as $k=>$v ) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Quran in A Easy Way</title>
+    <title>Quran in Bangla</title>
 	
 	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     
@@ -161,6 +161,7 @@ foreach( $option_arr as $k=>$v ) {
 		window.onload = function () { 
 			var $surah = parseInt( document.getElementById( "select_surah" ).getAttribute( "data-current-surah" ) );
 			document.getElementById( "select_surah" ).selectedIndex = $surah;
+			document.title = $("#select_surah option:selected").text();
 		}
 		
 		$(window).scroll(function() {
