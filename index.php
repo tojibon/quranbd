@@ -78,6 +78,24 @@ foreach( $option_arr as $k=>$v ) {
 	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     
 	<style type="text/css">
+		/*-------------------------------------------------------------------------*/
+		/*	1.	Browser Reset + Font Face
+		/*-------------------------------------------------------------------------*/
+		html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, 
+		del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, 
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, 
+		dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
+				vertical-align: baseline;
+				font-family: inherit;
+				font-weight: inherit;
+				font-style: inherit;
+				font-size: 100%;
+				outline: 0;
+				padding: 0;
+				margin: 0;
+				border: 0;
+		}
+
 		.content-body {
 			width: 100%;
 			max-width: 720px;
@@ -85,6 +103,10 @@ foreach( $option_arr as $k=>$v ) {
 			border: 1px solid #dedede;
 			background: #F2F2F2;
 			padding: 20px;
+			
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ 
+			-moz-box-sizing: border-box;    /* Firefox, other Gecko */ 
+			box-sizing: border-box;         /* Opera/IE 8+ */ 
 		}
 		
 		.select_surah {
@@ -125,11 +147,16 @@ foreach( $option_arr as $k=>$v ) {
 			border-top: 1px dashed blue;
 			border-color: rgb(197, 197, 197);
 		}
+		
+		img {
+			max-width: 100%;
+		}
+		
 	</style>
 	
 	<script type="text/javascript">
 		function reload_page( value ) {
-			window.location.href = 'http://localhost/quran/'+value;
+			window.location.href = 'http://localhost/quranbd/'+value;
 		}
 		window.onload = function () { 
 			var $surah = parseInt( document.getElementById( "select_surah" ).getAttribute( "data-current-surah" ) );
