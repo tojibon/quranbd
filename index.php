@@ -122,7 +122,7 @@ foreach( $option_arr as $k=>$v ) {
 			margin: 0 auto;
 		}
 		
-		.surah .ayat-bumber {
+		.surah .ayat-number {
 			background: #fff;
 			width: 60px;
 			height: 60px;
@@ -131,6 +131,7 @@ foreach( $option_arr as $k=>$v ) {
 			line-height: 60px;
 			font-size: 30px;
 			margin: 0 auto;
+			border: 3px solid #DEDEDE;
 		}
 		
 		.surah .ayat {
@@ -184,7 +185,7 @@ foreach( $option_arr as $k=>$v ) {
 				if ( $total_ayat > $total_displayed ) {
 					for( $i = $total_displayed+1; $i<=($total_displayed+10); $i++ ) {
 						if ( $i <= $total_ayat ) {
-							$str = $str + '<div class="ayat">';
+							$str = $str + '<div class="ayat" id="'+$i+'">';
 								$str = $str + '<div class="ayat-bumber">';
 									$str = $str + '<span>'+$i+'</span>';
 								$str = $str + '</div>';
@@ -349,8 +350,8 @@ foreach( $option_arr as $k=>$v ) {
 				}
 				for( $i=1; $i<=$max; $i++) {
 				?>
-					<div class="ayat">
-						<div class="ayat-bumber">
+					<div class="ayat" id="<?php echo $i; ?>">
+						<div class="ayat-number">
 							<span><?php echo $i; ?></span>
 						</div>
 						<div class="ayat-audio">
