@@ -147,7 +147,7 @@ foreach( $option_arr as $k=>$v ) {
 			padding-bottom: 10px;
 		}
 		
-		.surah .ayat-arabit {
+		.surah .ayat-arabic {
 			text-align: right;
 		}
 		
@@ -163,10 +163,36 @@ foreach( $option_arr as $k=>$v ) {
 			max-width: 100%;
 		}
 		
+		.compact .ayat-number,
+		.compact .ayat-audio,
+		.compact .ayat-arabic {
+			display: none;
+		}
+		.compact .surah .ayat-bangla, 
+		.compact .surah .ayat-bangla-translation {
+			padding-top: 0px;
+			padding-bottom: 0px;
+		}
+		.compact .surah .ayat {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		
+		.switch-to-compact {
+			float: left;
+			margin-left: 27px;
+			position: absolute;
+			top: 34px;
+			text-transform: uppercase;
+			font-size: 13px;
+			color: #797979;
+			font-weight: bold;
+		}
+		
 	</style>
 	
 	<script type="text/javascript">
-		var base_url = 'http://localhost/quranbd/';
+		var base_url = 'http://codeatomic.com/quranbd/';
 		function reload_page( value ) {
 			window.location.href = base_url + value;
 		}
@@ -174,6 +200,17 @@ foreach( $option_arr as $k=>$v ) {
 			var $surah = parseInt( document.getElementById( "select_surah" ).getAttribute( "data-current-surah" ) );
 			document.getElementById( "select_surah" ).selectedIndex = $surah;
 			document.title = $("#select_surah option:selected").text();
+			
+			jQuery('.switch-to-compact').on('click', function(){
+				if ( jQuery('body').hasClass('compact') ) {
+					jQuery('body').removeClass('compact');
+					jQuery(this).html('Compact Mode');
+				} else {
+					jQuery('body').addClass('compact');
+					jQuery(this).html('Back To Normal Mode');
+				}
+				return false;
+			});
 		}
 		
 		$(window).scroll(function() {
@@ -186,13 +223,13 @@ foreach( $option_arr as $k=>$v ) {
 					for( $i = $total_displayed+1; $i<=($total_displayed+10); $i++ ) {
 						if ( $i <= $total_ayat ) {
 							$str = $str + '<div class="ayat" id="'+$i+'">';
-								$str = $str + '<div class="ayat-bumber">';
+								$str = $str + '<div class="ayat-number">';
 									$str = $str + '<span>'+$i+'</span>';
 								$str = $str + '</div>';
 								$str = $str + '<div class="ayat-audio">';
 									$str = $str + '<audio src="http://www.quran.gov.bd/quran/Sound/arabic/'+$current_surah+'/'+$current_surah+'-'+$i+'.mp3" loop />';
 								$str = $str + '</div>';
-								$str = $str + '<div class="ayat-arabit">';
+								$str = $str + '<div class="ayat-arabic">';
 									$str = $str + '<img src="http://www.quran.gov.bd/quran/arabic/'+$current_surah+'/'+$current_surah+'-'+$i+'.png" alt="" />';
 								$str = $str + '</div>';
 								$str = $str + '<div class="ayat-bangla">';
@@ -223,6 +260,7 @@ foreach( $option_arr as $k=>$v ) {
 	
 	<div class="content-body">
 		<div>
+			<a href="#" class="switch-to-compact">Compact Mode</a>
 			<select class="select_surah"  name="select_surah" id="select_surah" data-displayed-ayat="10" data-total-ayat="<?php echo $total_ayat; ?>" data-current-surah="<?php echo $surah; ?>" onchange="reload_page(this.value);" >
 				<option value="" selected style="font-size:16px;font-family:SolaimanLipi;">সূরা নির্বাচন</option>
 				<option style="font-family:SolaimanLipi;font-size:16px;padding-left:5px;" value="1"  > ১. ফাতিহা</option>
@@ -357,7 +395,7 @@ foreach( $option_arr as $k=>$v ) {
 						<div class="ayat-audio">
 							<audio src="http://www.quran.gov.bd/quran/Sound/arabic/<?php echo $surah; ?>/<?php echo $surah; ?>-<?php echo $i; ?>.mp3"  loop />
 						</div>
-						<div class="ayat-arabit">
+						<div class="ayat-arabic">
 							<img src="http://www.quran.gov.bd/quran/arabic/<?php echo $surah; ?>/<?php echo $surah; ?>-<?php echo $i; ?>.png" alt="" />
 						</div>
 						<div class="ayat-bangla">
