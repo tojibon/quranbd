@@ -163,7 +163,6 @@ foreach( $option_arr as $k=>$v ) {
 			max-width: 100%;
 		}
 		
-		.compact .ayat-number,
 		.compact .ayat-audio,
 		.compact .ayat-arabic {
 			display: none;
@@ -176,6 +175,21 @@ foreach( $option_arr as $k=>$v ) {
 		.compact .surah .ayat {
 			padding-top: 10px;
 			padding-bottom: 10px;
+			position: relative;
+		}
+		.compact .surah .ayat-number {
+			background: none;
+			width: auto;
+			height: auto;
+			border-radius: 0px;
+			text-align: center;
+			line-height: auto;
+			font-size: 14px;
+			margin: 0 auto;
+			border: 0px solid #DEDEDE;
+			position: absolute;
+			right: -15px;
+			top: -5px;
 		}
 		
 		.switch-to-compact {
